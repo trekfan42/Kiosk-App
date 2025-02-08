@@ -134,6 +134,7 @@ main#mainContent {
   left: 0;
   width: 100vw;
   height: 100vh;
+  max-height: 100vh;
   background: rgba(0,0,0,0.8);
   z-index: 9999;
 
@@ -142,26 +143,9 @@ main#mainContent {
   justify-content: center;
 }
 
-/* MAIN LIGHTBOX CONTENT */
-#lightboxContent {
-  width: 98%;
-  height: 98%;
-  background-color: #111111; /* black background */
-  color: #fff;            /* text color in the modal */
-  border-radius: 10px;
-  position: relative;
-  padding: 20px;
-
-  /* We'll arrange Title, Video, and Description in a vertical stack */
-  display: flex;
-  flex-direction: column;
-  /* If content overflows (rare), it will clip or scroll if you prefer: */
-  overflow: hidden;
-}
-
 /* Close button in top-right corner */
 .close-btn {
-  position: absolute;
+  position:fixed;
   top: 10px;
   right: 30px;
   background: #88888800;
@@ -172,6 +156,31 @@ main#mainContent {
 
 }
 
+/* MAIN LIGHTBOX CONTENT */
+#lightboxContent {
+  width: 90%;
+  height: 90%;
+  background-color: #111111; /* black background */
+  color: #fff;            /* text color in the modal */
+  border-radius: 10px;
+  position: relative;
+  padding: 40px;
+
+  /* We'll arrange Title, Video, and Description in a vertical stack */
+  display: flex;
+  flex-direction: column;
+  /* If content overflows (rare), it will clip or scroll if you prefer: */
+  overflow:auto;
+  scrollbar-width: none;    /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge Legacy */
+  /* Hide scrollbar in Chrome/Safari */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+
 /* Title: up to 10% of Lightbox */
 #lbTitle {
   flex: 0 0 10%;       /* Title gets up to 10% vertical space */
@@ -180,55 +189,35 @@ main#mainContent {
   align-items: center; /* vertically center text in that 10% area */
   font-weight: bold;
   font-size: 2.5rem;
+  max-height: 10vh;
 }
 
 /* Video Container: up to 70% of Lightbox */
 .videoContainer {
-  flex: 0 0 70%;
+
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-
-  width: 100%;
+  width: 88vh;
+  max-width: 90vh;
+  height: 50vh;
+  max-height: 60vh;
   margin: 0 auto;
   background: #000000;  /* for visual debugging, remove if you like */
+  padding-bottom: 2%;
 }
 
-/*
-  16:9 aspect ratio technique:
-  We want the video to scale while not exceeding this container's height.
-  The simplest approach: an inner wrapper that uses padding-bottom for ratio.
-*/
-.videoContainer .aspectRatioWrapper {
-  position: relative;
-  width: 80%;           /* or 100%, or a chosen width */
-  max-height: 70%;     /* so it can't exceed parent's height */
-  overflow: hidden;
-}
 
-/* The ratio box: 16:9 (56.25%) */
-.videoContainer .aspectRatioWrapper::before {
-  content: "";
-  display: block;
-  max-height: 70%;  
-  padding-bottom: 56.25%; /* 16 / 9 * 100% */
-}
 
-/* The actual iframe sits absolutely inside the ratio box */
-.videoContainer iframe {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+
 
 /* Description: up to 20% of Lightbox */
 #lbDescription {
-  flex: 0 0 20%;
   overflow: auto;   /* in case text is long, it can scroll in this area */
   text-align: left;
+  flex-grow: 1;
   font-size: 1.5rem;
+  height: 30vh;
   margin-top: 10px; /* small gap above */
 }
