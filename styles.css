@@ -1,0 +1,234 @@
+/* RESET / GLOBAL STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* no scrollbars or scrolling */
+}
+
+/* HIDDEN UTILITY CLASS */
+.hidden {
+  display: none !important;
+}
+
+/* HEADER */
+header {
+  flex: 0 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.623); /* half-transparent black */
+}
+
+#logo {
+  height: 100px;
+  cursor: pointer;
+}
+
+/* BODY BACKGROUND - full-screen cover */
+body {
+  background-image: url('https://static.wixstatic.com/media/b7c8e6_571c405f9cde4ba18d1df7a38d47aaec~mv2.jpg/v1/fill/w_1613,h_1101,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b7c8e6_571c405f9cde4ba18d1df7a38d47aaec~mv2.jpg');
+  background-size: cover;
+  color: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* kiosk-like, no scroll */
+
+  touch-action: none; /* Disables panning/zooming gestures */
+  -webkit-overflow-scrolling: none; /* iOS older versions */
+}
+
+/* MAIN CONTENT: center horizontally & vertically */
+main#mainContent {
+  flex: 1 1 auto;
+  background-size: cover;
+  background-position: -50px;
+  background-origin: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+}
+
+/* CARD CONTAINER: horizontal scrolling carousel */
+#cardContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: none;    /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge Legacy */
+  /* Hide scrollbar in Chrome/Safari */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  min-height: 44vh;
+  min-width: 44vw;
+  max-width: 80vw;
+  padding: 5vw;
+  box-sizing: border-box;
+}
+
+/* INDIVIDUAL CARDS */
+.card {
+  background-color: #c7ef30; /* neon green */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 30vw;
+  max-width: 30vw;
+  height: 50vh;
+
+  flex: 0 0 auto;
+  cursor: pointer;
+  color: #000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+}
+
+/* Card thumbnail */
+.card img {
+  min-width: 100%;
+  max-width: 100%;
+  padding: 1vw;
+  min-height: 60%;
+  max-height: 60%;
+  object-fit: cover;
+}
+
+/* Card text area */
+.card .card-content {
+  padding: 1vh;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+.card .title {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+.card .description {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* LIGHTBOX (Modal) Backdrop */
+#lightbox {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MAIN LIGHTBOX CONTENT */
+#lightboxContent {
+  width: 98%;
+  height: 98%;
+  background-color: #111111; /* black background */
+  color: #fff;            /* text color in the modal */
+  border-radius: 10px;
+  position: relative;
+  padding: 20px;
+
+  /* We'll arrange Title, Video, and Description in a vertical stack */
+  display: flex;
+  flex-direction: column;
+  /* If content overflows (rare), it will clip or scroll if you prefer: */
+  overflow: hidden;
+}
+
+/* Close button in top-right corner */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  background: #88888800;
+  color: #c7ef30;
+  border: none;
+  cursor: pointer;
+  font-size: 3rem;
+
+}
+
+/* Title: up to 10% of Lightbox */
+#lbTitle {
+  flex: 0 0 10%;       /* Title gets up to 10% vertical space */
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center; /* vertically center text in that 10% area */
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+/* Video Container: up to 70% of Lightbox */
+.videoContainer {
+  flex: 0 0 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  width: 100%;
+  margin: 0 auto;
+  background: #000000;  /* for visual debugging, remove if you like */
+}
+
+/*
+  16:9 aspect ratio technique:
+  We want the video to scale while not exceeding this container's height.
+  The simplest approach: an inner wrapper that uses padding-bottom for ratio.
+*/
+.videoContainer .aspectRatioWrapper {
+  position: relative;
+  width: 80%;           /* or 100%, or a chosen width */
+  max-height: 70%;     /* so it can't exceed parent's height */
+  overflow: hidden;
+}
+
+/* The ratio box: 16:9 (56.25%) */
+.videoContainer .aspectRatioWrapper::before {
+  content: "";
+  display: block;
+  max-height: 70%;  
+  padding-bottom: 56.25%; /* 16 / 9 * 100% */
+}
+
+/* The actual iframe sits absolutely inside the ratio box */
+.videoContainer iframe {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Description: up to 20% of Lightbox */
+#lbDescription {
+  flex: 0 0 20%;
+  overflow: auto;   /* in case text is long, it can scroll in this area */
+  text-align: left;
+  font-size: 1.5rem;
+  margin-top: 10px; /* small gap above */
+}

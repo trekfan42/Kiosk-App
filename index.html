@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>PWA Kiosk App</title>
+    
+  
+    <!-- Link your manifest -->
+    <link rel="manifest" href="./manifest.json" />
+    <!-- Primary theme color for Android/Chrome UI -->
+    <meta name="theme-color" content="#000000" />
+  
+    <!-- iOS PWA setup -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Kiosk" />
+    <meta name="viewport" content="viewport-fit=cover,  initial-scale=1, maximum-scale=1, user-scalable=no" />
+    
+    <!-- Your kiosk's main CSS/JS -->
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+
+  <!-- Papa Parse for CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <header>
+    <img 
+      id="logo" 
+      src=""
+      alt="Logo"
+      title="Tap 10 times to access admin"
+    />
+  </header>
+
+  <main id="mainContent">
+    <div id="cardContainer"></div>
+  </main>
+
+  <!-- LIGHTBOX (MODAL) -->
+  <div id="lightbox" class="hidden">
+    <div id="lightboxContent">
+      <button id="closeLightboxBtn" class="close-btn">✕</button>
+      
+      <h2 id="lbTitle"></h2>
+      
+      <!-- This container for the video -->
+      <div id="videoContainer" class="videoContainer"></div>
+      
+      <p id="lbDescription"></p>
+    </div>
+  </div>
+</body>
+</html>
