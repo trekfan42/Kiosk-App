@@ -22,7 +22,7 @@ let cardsData = [];
 /****************************************
  * FETCH DATA FROM JSON FILE
  ****************************************/
-const jsonUrl = "./data.json"; // Relative path to JSON file
+const jsonUrl = "https://gist.githubusercontent.com/trekfan42/3819f088f8a08869d568a1eff5c2ce1f/raw/80436915f5ef476d7cd4645e99036147934b3a47/gistfile1.txt"; // Relative path to JSON file
 
 async function fetchJSONData() {
   try {
