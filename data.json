@@ -1,0 +1,35 @@
+[
+    {
+        "Title": "LogoURL",
+        "LinkURL": "https://i.ibb.co/MF7F78P/a16z-logo-full-green-white-800w.png"
+    },
+    {
+        "Title": "BackgroundURL",
+        "LinkURL": "https://static.wixstatic.com/media/b7c8e6_571c405f9cde4ba18d1df7a38d47aaec~mv2.jpg/v1/fill/w_1613,h_1101,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b7c8e6_571c405f9cde4ba18d1df7a38d47aaec~mv2.jpg"
+    },
+    {
+        "Title": "Card1",
+        "CardTitle": "Video Test",
+        "LinkURL": "https://4kwallpapers.com/images/wallpapers/dark-background-abstract-background-network-3d-background-3840x2160-8324.png",
+        "EmbedCode": "<div style='position:relative; width:100%; height:0px; padding-bottom:56.250%'><iframe allow='fullscreen' allowfullscreen height='100%'' src='https://streamable.com/e/jzh2j2?' width='100%' style='border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;'></iframe></div>",
+        "Description": "Video Test",
+        "ShortDescription": "This is a brief summary of the card content..."
+    },
+    {
+        "Title": "Card2",
+        "CardTitle": "Lots of text and video 1",
+        "LinkURL": "https://t3.ftcdn.net/jpg/05/85/86/44/360_F_585864419_kgIYUcDQ0yiLOCo1aRjeu7kRxndcoitz.jpg",
+        "EmbedCode": "<div style='position:relative; width:100%; height:0px; padding-bottom:56.250%'><iframe allow='fullscreen' allowfullscreen height='100%' src='https://streamable.com/e/hrf5ul?' width='100%' style='border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;'></iframe></div>",
+        "Description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. \n Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. \n Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "ShortDescription": "This is a brief summary of the card content..."
+
+    },
+    {
+        "Title": "Card2",
+        "CardTitle": "Lots of text and video 1",
+        "LinkURL": "https://www.midsouthfcu.org/wp-content/uploads/2016/09/river-e1474985418357.jpg",
+        "EmbedCode": "<div style='position:relative; width:100%; height:0px; padding-bottom:56.250%'><iframe allow='fullscreen' allowfullscreen height='100%' src='https://streamable.com/e/cfxujs?' width='100%' style='border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;'></iframe></div>",
+        "Description": "Video Test",
+        "ShortDescription": "This is a brief summary of the card content..."
+    }
+]
