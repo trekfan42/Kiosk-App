@@ -28,7 +28,7 @@ function getQueryParam(param) {
 }
 
 // Get JSON URL from query or use default
-const jsonUrl = getQueryParam("json");
+const jsonUrl = "https://gist.githubusercontent.com/trekfan42/3819f088f8a08869d568a1eff5c2ce1f/raw/80436915f5ef476d7cd4645e99036147934b3a47/gistfile1.txt" ;
 
 console.log("Using JSON URL:", jsonUrl); // Debugging log
 
