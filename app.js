@@ -20,51 +20,63 @@ let currentBgUrl = "";
 let cardsData = [];
 
 /****************************************
- * FETCH DATA FROM JSON FILE
+ * FETCH JSON URL FROM QUERY PARAMETER
  ****************************************/
-const jsonUrl = "./data.json"; // Relative path to JSON file
-
-async function fetchJSONData() {
-  try {
-      const response = await fetch(jsonUrl);
-      const jsonData = await response.json();
-
-      console.log("JSON Data:", jsonData); // Debugging log
-
-      let newLogoUrl = "";
-      let newBgUrl = "";
-      let newCardsData = [];
-
-      jsonData.forEach(row => {
-          const rowType = row["Title"] || "";
-
-          if (rowType === "LogoURL") {
-              newLogoUrl = row["LinkURL"] || "";
-          } else if (rowType === "BackgroundURL") {
-              newBgUrl = row["LinkURL"] || "";
-          } else if (rowType.startsWith("Card")) {
-              const title = row["CardTitle"] || "";
-              const thumbnail = row["LinkURL"] || "";
-              const shortDescription = row["ShortDescription"] || "";
-              const fullDescription = row["Description"] || "";
-              const embedCode = row["EmbedCode"] || "";
-
-              newCardsData.push({ title, thumbnail, shortDescription, fullDescription, embedCode });
-          }
-      });
-
-      // Update global variables
-      currentLogoUrl = newLogoUrl;
-      currentBgUrl = newBgUrl;
-      cardsData = newCardsData;
-
-      updateLogoAndBackground();
-      renderCards();
-  } catch (error) {
-      console.error("Error fetching JSON data:", error);
-  }
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
 }
 
+// Get JSON URL from query or use default
+const jsonUrl = "./data.json" ;
+
+console.log("Using JSON URL:", jsonUrl); // Debugging log
+
+/****************************************
+ * FETCH DATA FROM JSON FILE
+ ****************************************/
+async function fetchJSONData() {
+    try {
+        const response = await fetch(jsonUrl);
+        if (!response.ok) throw new Error("Failed to fetch JSON file.");
+        
+        const jsonData = await response.json();
+        console.log("JSON Data:", jsonData); // Debugging log
+
+        let newLogoUrl = "";
+        let newBgUrl = "";
+        let newCardsData = [];
+
+        jsonData.forEach(row => {
+            const rowType = row["Title"] || "";
+
+            if (rowType === "LogoURL") {
+                newLogoUrl = row["LinkURL"] || "";
+            } else if (rowType === "BackgroundURL") {
+                newBgUrl = row["LinkURL"] || "";
+            } else if (rowType.startsWith("Card")) {
+                const title = row["CardTitle"] || "";
+                const thumbnail = row["LinkURL"] || "";
+                const shortDescription = row["ShortDescription"] || "";
+                const fullDescription = row["Description"] || "";
+                const embedCode = row["EmbedCode"] || "";
+
+                newCardsData.push({ title, thumbnail, shortDescription, fullDescription, embedCode });
+            }
+        });
+
+        // Update global variables
+        currentLogoUrl = newLogoUrl;
+        currentBgUrl = newBgUrl;
+        cardsData = newCardsData;
+
+        updateLogoAndBackground();
+        renderCards();
+    } catch (error) {
+        console.error("Error fetching JSON data:", error);
+        alert("Failed to load JSON. Please check the URL.");
+    }
+}
 
 /****************************************
  * WINDOW LOAD: Fetch JSON on Page Load
@@ -100,50 +112,50 @@ function updateLogoAndBackground() {
  * RENDER CARDS
  ****************************************/
 function renderCards() {
-  console.log("Rendering main page cards...");
-  cardContainerEl.innerHTML = "";
+    console.log("Rendering main page cards...");
+    cardContainerEl.innerHTML = "";
 
-  cardsData.forEach(card => {
-      const cardDiv = document.createElement("div");
-      cardDiv.classList.add("card");
+    cardsData.forEach(card => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("card");
 
-      // Thumbnail
-      const imgEl = document.createElement("img");
-      imgEl.src = card.thumbnail;
-      cardDiv.appendChild(imgEl);
+        // Thumbnail
+        const imgEl = document.createElement("img");
+        imgEl.src = card.thumbnail;
+        cardDiv.appendChild(imgEl);
 
-      // Content
-      const contentDiv = document.createElement("div");
-      contentDiv.classList.add("card-content");
+        // Content
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("card-content");
 
-      const titleEl = document.createElement("div");
-      titleEl.classList.add("title");
-      titleEl.textContent = card.title;
-      contentDiv.appendChild(titleEl);
+        const titleEl = document.createElement("div");
+        titleEl.classList.add("title");
+        titleEl.textContent = card.title;
+        contentDiv.appendChild(titleEl);
 
-      // Use `ShortDescription` instead of full description
-      const descEl = document.createElement("div");
-      descEl.classList.add("description");
-      descEl.textContent = card.shortDescription; // Now using ShortDescription
+        // Use `ShortDescription` instead of full description
+        const descEl = document.createElement("div");
+        descEl.classList.add("description");
+        descEl.textContent = card.shortDescription; // Now using ShortDescription
 
-      contentDiv.appendChild(descEl);
-      cardDiv.appendChild(contentDiv);
+        contentDiv.appendChild(descEl);
+        cardDiv.appendChild(contentDiv);
 
-      // Lightbox click (Full description is still in the lightbox)
-      cardDiv.addEventListener("click", () => {
-          console.log("Opening lightbox for card:", card.title);
-          openLightbox(card);
-      });
+        // Lightbox click (Full description is still in the lightbox)
+        cardDiv.addEventListener("click", () => {
+            console.log("Opening lightbox for card:", card.title);
+            openLightbox(card);
+        });
 
-      cardContainerEl.appendChild(cardDiv);
-  });
+        cardContainerEl.appendChild(cardDiv);
+    });
 }
-
 
 /****************************************
  * LIGHTBOX FUNCTIONALITY
  ****************************************/
 function openLightbox(card) {
+<<<<<<< HEAD
     console.log("Full Card Data:", card);
 
     lbTitleEl.textContent = card.title || "No Title";
@@ -229,3 +241,24 @@ document.getElementById("cardContainer").addEventListener("touchmove", function 
 
 
 
+=======
+    lbTitleEl.textContent = card.title;
+    lbDescriptionEl.textContent = card.fullDescription; // Use Full Description
+    lbVideoContainer.innerHTML = card.embedCode || "";
+
+    lightboxEl.classList.remove("hidden");
+}
+
+if (closeLightboxBtn) {
+    closeLightboxBtn.addEventListener("click", () => {
+        if (lightboxEl) {
+            lightboxEl.classList.add("hidden");
+            console.log("Lightbox hidden.");
+        }
+        if (lbVideoContainer) {
+            lbVideoContainer.innerHTML = ""; // Remove iframe to stop video
+        }
+    });
+}
+</script>
+>>>>>>> 69b74a1c78da3f03aa413c44393da3c801d009a9
