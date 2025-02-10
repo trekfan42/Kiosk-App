@@ -40,18 +40,32 @@
     <div id="cardContainer"></div>
   </main>
 
-  <!-- LIGHTBOX (MODAL) -->
+  <!-- LIGHTBOX (Modal) -->
   <div id="lightbox" class="hidden">
     <div id="lightboxContent">
-      <button id="closeLightboxBtn" class="close-btn">✕</button>
-      
-      <h2 id="lbTitle"></h2>
-      
-      <!-- This container for the video -->
-      <div id="videoContainer" class="videoContainer"></div>
-      
-      <p id="lbDescription"></p>
+        <button id="closeLightboxBtn" class="close-btn">✕</button>
+        
+        <h2 id="lbTitle"></h2>
+        
+        <!-- Thumbnail Wrapper -->
+        <div id="thumbnailContainer">
+            <img id="videoThumbnail" src="" alt="Video Thumbnail">
+            <img id="playIcon" src="./play.png" alt="Play" />
+        </div>
+        
+        <p id="lbDescription"></p>
     </div>
   </div>
+
+  <!-- Fullscreen Video Modal -->
+  <div id="videoModal" class="hidden">
+    <div id="videoContainer"></div>
+    <button id="closeVideoModalBtn" class="close-btn">✕</button>
+  </div>
+
+
+
+
+
 </body>
 </html>

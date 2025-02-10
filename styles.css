@@ -39,7 +39,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden; /* kiosk-like, no scroll */
-
+  overscroll-behavior: none;
   touch-action: none; /* Disables panning/zooming gestures */
   -webkit-overflow-scrolling: none; /* iOS older versions */
 }
@@ -63,7 +63,8 @@ main#mainContent {
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
-
+  -webkit-overflow-scrolling: touch; /* Ensures smooth iOS scrolling */
+  white-space: nowrap; /* Prevents vertical wrap */
   scrollbar-width: none;    /* Firefox */
   -ms-overflow-style: none; /* IE/Edge Legacy */
   /* Hide scrollbar in Chrome/Safari */
@@ -77,6 +78,8 @@ main#mainContent {
   padding: 5vw;
   box-sizing: border-box;
 }
+
+
 
 /* INDIVIDUAL CARDS */
 .card {
@@ -149,11 +152,40 @@ main#mainContent {
   justify-content: center;
 }
 
+/* Fullscreen Video Modal */
+#videoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* Make iframes responsive */
+#videoContainer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+#fullscreenVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
 /* Close button in top-right corner */
 .close-btn {
   position:fixed;
-  top: 10px;
-  right: 30px;
+  top: 25px;
+  right: 50px;
   background: #88888800;
   color: #c7ef30;
   border: none;
@@ -185,6 +217,27 @@ main#mainContent {
   }
 }
 
+/* Prevent background scrolling when modal is open */
+.no-scroll {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  background-color: black !important; /* Ensures black background */
+}
+
+/* Ensure the lightbox and video modal cover the entire viewport */
+#lightbox, #videoModal {
+  background-color: black !important; /* Prevents the white bar */
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
 
 
 /* Title: up to 10% of Lightbox */
@@ -198,20 +251,50 @@ main#mainContent {
   max-height: 10vh;
 }
 
-/* Video Container: up to 70% of Lightbox */
-.videoContainer {
-
+/* Make video container fill the screen */
+#videoContainer {
+  width: 90vw;
+  height: 90vh;
+  max-width: 100%;
+  max-height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #000;
+}
+
+/* Ensure the iframe takes the full size of its container */
+#videoContainer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Lightbox Thumbnail Container */
+#thumbnailContainer {
   position: relative;
-  width: 88vh;
-  max-width: 90vh;
-  height: 50vh;
-  max-height: 60vh;
-  margin: 0 auto;
-  background: #000000;  /* for visual debugging, remove if you like */
-  padding-bottom: 2%;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  cursor: pointer;
+}
+
+/* Thumbnail Image */
+#videoThumbnail {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Play Button Overlay */
+#playIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px; /* Adjust size as needed */
+  height: 80px;
+  pointer-events: none; /* So it doesn't block clicks */
+  opacity: 0.8;
 }
 
 
