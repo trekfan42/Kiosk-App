@@ -155,7 +155,6 @@ function renderCards() {
  * LIGHTBOX FUNCTIONALITY
  ****************************************/
 function openLightbox(card) {
-<<<<<<< HEAD
     console.log("Full Card Data:", card);
 
     lbTitleEl.textContent = card.title || "No Title";
@@ -241,24 +240,3 @@ document.getElementById("cardContainer").addEventListener("touchmove", function 
 
 
 
-=======
-    lbTitleEl.textContent = card.title;
-    lbDescriptionEl.textContent = card.fullDescription; // Use Full Description
-    lbVideoContainer.innerHTML = card.embedCode || "";
-
-    lightboxEl.classList.remove("hidden");
-}
-
-if (closeLightboxBtn) {
-    closeLightboxBtn.addEventListener("click", () => {
-        if (lightboxEl) {
-            lightboxEl.classList.add("hidden");
-            console.log("Lightbox hidden.");
-        }
-        if (lbVideoContainer) {
-            lbVideoContainer.innerHTML = ""; // Remove iframe to stop video
-        }
-    });
-}
-</script>
->>>>>>> 69b74a1c78da3f03aa413c44393da3c801d009a9
